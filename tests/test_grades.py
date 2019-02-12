@@ -10,5 +10,5 @@ def test_avg():
 def test_readfile():
     ans = readfile('grades.txt')
     a_test = {}
-    len(ans) == 3
-    isinstance(ans, type(a_test))
+    assert len(ans) == 3
+    assert isinstance(ans, type(a_test))
