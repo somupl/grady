@@ -14,15 +14,32 @@ def average(mark_dict):
     return avg
 
 
-mark = {}
-with open('grades.txt') as f:
-    for line in f:
-        a, b = line.strip().split(' ')
-        if a in mark:
-            mark[a].append(float(b))
-        else:
-            mark[a] = [float(b)]
+# mark = {}
+# with open('grades.txt') as f:
+#     for line in f:
+#         a, b = line.strip().split(' ')
+#         if a in mark:
+#             mark[a].append(float(b))
+#         else:
+#             mark[a] = [float(b)]
 
-result = average(mark)
-print(sorted(result.items(), key=lambda kv: kv[1],
-             reverse=True))
+
+def readfile(filename):
+    mark = {}
+    with open(filename) as f:
+        for line in f:
+            a, b = line.strip().split(' ')
+            if a in mark:
+                mark[a].append(float(b))
+            else:
+                mark[a] = [float(b)]
+    return mark
+
+
+result = average(readfile('grades.txt'))
+final_result = sorted(result.items(), key=lambda kv: kv[1],
+                      reverse=True)
+
+print('student and average scores ranked in desc order')
+for key, value in final_result:
+    print('student {} average score is: {}'.format(key, round(value, 2)))
